@@ -203,6 +203,62 @@ def MatrizH(n):
 
     return nuevaMatriz
 
+def MatrizI(n):
+    nuevaMatriz = []
+    for i in range (n):
+        nuevaMatriz.append([])
+        for j in range (n):
+            nuevaMatriz[i].append(0)
+
+    x = 0
+    actualX = 0
+    y = 0
+    actualY = 0
+    valor = 0
+    encontramosDiagonal = False
+    cantidadDiagonal = 0
+    acendente = True
+    while valor < n*n:
+        if actualX >= 0 and actualX < n and actualY >= 0 and actualY < n:
+            valor += 1
+            nuevaMatriz[actualY][actualX] = valor
+            cantidadDiagonal += 1
+            if acendente:
+                actualX += 1
+                actualY -= 1
+            else:
+                actualX -= 1
+                actualY += 1
+        else:
+            if acendente:
+                acendente = False
+            else:
+                acendente = True
+
+            if cantidadDiagonal == n:
+                encontramosDiagonal = True
+            cantidadDiagonal = 0
+            
+            if encontramosDiagonal:
+                y += 1
+
+                if acendente:
+                    actualX = y
+                    actualY = n -1
+                else:
+                    actualY = y
+                    actualX = n -1
+            else:
+                x += 1
+                if acendente:
+                    actualX = 0
+                    actualY = x
+                else:
+                    actualX = x
+                    actualY = 0
+
+    return nuevaMatriz
+
 n = int(input("Ingrese el tamaño de la matriz => "))
 
 listaOpciones = [
@@ -213,7 +269,8 @@ listaOpciones = [
     ["E", MatrizE],
     ["F", MatrizF],
     ["G", MatrizG],
-    ["H", MatrizH]
+    ["H", MatrizH],
+    ["I", MatrizI],
 ]
 
 print("Opciones:")
