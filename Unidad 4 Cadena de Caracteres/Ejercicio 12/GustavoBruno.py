@@ -7,3 +7,4 @@ for palo in palos:
 
 for carta in mazo:
     print(carta)
+
